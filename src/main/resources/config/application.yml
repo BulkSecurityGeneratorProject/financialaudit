@@ -1,0 +1,15 @@
+server:
+    port: 8080
+
+spring:
+    profiles:
+        active: prod
+        include:
+    devtools:
+        restart:
+            enabled: true
+        livereload:
+            enabled: false
+    jackson:
+        serialization.indent_output: true
+

@@ -1,0 +1,96 @@
+spring:
+    profiles:
+        active: prod-mysql
+    datasource:
+        dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+        url: jdbc:mysql://localhost:3306/test
+        databaseName: test
+        serverName: localhost
+        username: root
+        password: 1234
+    jpa:
+        database-platform: org.hibernate.dialect.MySQLDialect
+        database: MYSQL
+        openInView: true
+        show_sql: false
+        generate-ddl: true
+        hibernate:
+            ddl-auto: update
+            naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
+            hikari:
+                    minimumIdle : 10
+                    maximumPoolSize : 30
+                    idleTimeout : 300000
+                    maxLifetime : 600000
+                    connectionTestQuery : select 1
+        properties:
+            hibernate.cache.use_second_level_cache: true
+            hibernate.cache.use_query_cache: false
+            hibernate.generate_statistics: false
+            hibernate.cache.use_minimal_puts: true
+            hibernate.cache.hazelcast.use_lite_member: true
+            javax.persistence.validation.mode: NONE
+            hibernate.id.new_generator_mappings: true
+            hibernate.hbm2ddl.import_files: schema_mysql.sql, import.sql
+
+    messages:
+        cache-seconds: 1
+    thymeleaf:
+        mode: XHTML
+        cache: false
+    cache:
+      jcache:
+        config: classpath:ehcache3.xml
+        provider: org.ehcache.jsr107.EhcacheCachingProvider
+
+# Upload File @MultipartConfig ayarlari
+    http:
+      multipart:
+        max-file-size: 500MB
+        max-request-size: 500MB
+
+async:
+    corePoolSize: 2
+    maxPoolSize: 10
+    queueCapacity: 100
+
+mail:
+    ENV_SPRING_MAIL: mail.
+    #
+    defaultHost: localhost
+    defaultPropHost: localhost
+    #
+    from: yildizib@gmail.com
+    propUser: yildizib@gmail.com
+    password: XXXXXXXX
+    #
+    PROP_HOST: smtp.gmail.com
+    PROP_PORT: 587
+    PROP_PROTO: smtp
+    PROP_TLS: true
+    PROP_AUTH: true
+    PROP_SMTP_AUTH: mail.smtp.auth
+    PROP_STARTTLS: mail.smtp.starttls.enable
+    PROP_TRANSPORT_PROTO: mail.smtp.port
+    transport.protocol: mail.smtp.port
+    #
+    baseUrl: http://www.google.com
+    activation:
+      title: Activation Title
+    reset:
+      title: Reset Title
+
+logback:
+    loglevel: ERROR
+
+logging:
+  level:
+    root: ERROR
+    #console: INFO
+    #async: WARN
+
+upload:
+    UPLOAD_DIRECTORY: /Users/yildizib/Downloads/bgkav_files
+    PUBLIC_PATH: /files/
+    ALLOWED_EXTENSIONS: xml,csv,xls,jpg,jpeg,png,gif
+    CSV_FILE_DELIMITER: ;

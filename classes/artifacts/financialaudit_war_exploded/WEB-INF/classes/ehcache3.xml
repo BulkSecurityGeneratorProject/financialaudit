@@ -1,0 +1,36 @@
+<config xmlns='http://www.ehcache.org/v3'
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core-3.0.xsd">
+
+    <persistence directory="cache-data"/>
+    <cache alias="HOURLY">
+        <expiry>
+            <ttl unit="seconds">3600</ttl>
+        </expiry>
+        <resources>
+            <heap unit="entries">10000</heap>
+            <disk unit="GB" persistent="true">1</disk>
+        </resources>
+    </cache>
+
+    <cache alias="DAILY">
+        <expiry>
+            <ttl unit="seconds">86400</ttl>
+        </expiry>
+        <resources>
+            <heap unit="entries">10000</heap>
+            <disk unit="GB" persistent="true">1</disk>
+        </resources>
+    </cache>
+
+    <cache alias="WEEKLY">
+        <expiry>
+            <ttl unit="seconds">604800</ttl>
+        </expiry>
+        <resources>
+            <heap unit="entries">10000</heap>
+            <disk unit="GB" persistent="true">1</disk>
+        </resources>
+    </cache>
+
+</config>
